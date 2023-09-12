@@ -1,14 +1,14 @@
-export class CreateUserInputModel {
-  phone: string;
-  name: string;
-}
-
 export class CreateDoctorInputModel {
   name: string;
   spec: string;
 }
 
-export class UsersFactory {
-  constructor(public id: string, public phone: string, public name: string) {}
+export class CreateRecordInputModel {
+  user_id: string;
+  doctor_id: string;
+  slot: Date;
 }
 
+export class DoctorsFactory {
+  constructor(public id: string, public name: string, public spec: string) {}
+}

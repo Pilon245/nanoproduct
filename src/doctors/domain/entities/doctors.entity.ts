@@ -1,18 +1,32 @@
 import { HydratedDocument } from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
-export type UserDocument = HydratedDocument<User>;
+export type DoctorDocument = HydratedDocument<Doctor>;
 
 @Schema()
-export class User {
+export class SlotTypeData {
+  @Prop()
+  user_id: string;
+
+  @Prop()
+  slot: Date;
+}
+
+const SlotTypeDataSchema = SchemaFactory.createForClass(SlotTypeData);
+
+@Schema()
+export class Doctor {
   @Prop({ require: true })
   id: string;
 
   @Prop({ require: true })
-  phone: string;
+  name: string;
 
   @Prop({ require: true })
-  name: string;
+  spec: string;
+
+  @Prop({ default: [], type: [SlotTypeDataSchema] })
+  slots: SlotTypeData[];
 }
 
-export const UserSchema = SchemaFactory.createForClass(User);
+export const DoctorSchema = SchemaFactory.createForClass(Doctor);
